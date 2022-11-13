@@ -16,7 +16,7 @@ class Database:
 
         cursor = self.cursor()
 
-        cursor.execute("CREATE TABLE IF NOT EXISTS users (id VARCHAR(%s), name VARCHAR(%s))", [MAX_CHARACTERS_IN_USER_ID, MAX_CHARACTERS_IN_USER_NAME])
+        cursor.execute("CREATE TABLE IF NOT EXISTS users (id VARCHAR(%s) PRIMARY KEY, name VARCHAR(%s))", [MAX_CHARACTERS_IN_USER_ID, MAX_CHARACTERS_IN_USER_NAME])
         cursor.execute("CREATE TABLE IF NOT EXISTS permissions (user VARCHAR(%s), permission VARCHAR(%s), PRIMARY KEY (user, permission))", [MAX_CHARACTERS_IN_USER_ID, MAX_CHARACTERS_IN_PERMISSION])
 
     def cursor(self):
@@ -28,11 +28,20 @@ class Database:
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.connection.commit()
 
+    def get_users(self):
+        cursor = self.cursor()
+        cursor.execute("SELECT id, name FROM users")
+
+        users = []
+        for value in cursor.fetchall():
+            users.append(value)
+        return users
+
     def get_user(self, id):
         cursor = self.cursor()
         cursor.execute("SELECT id, name FROM users WHERE id=%s", [id])
 
-        for value in cursor:
+        for value in cursor.fetchall():
             return value
 
     def set_user(self, id, name):
@@ -43,7 +52,7 @@ class Database:
         cursor = self.cursor()
         cursor.execute("SELECT permission FROM permissions WHERE user=%s AND permission=%s", [user, permission])
 
-        for _ in cursor:
+        for _ in cursor.fetchall():
             return True
 
     def get_permissions(self, user):
@@ -51,8 +60,8 @@ class Database:
         cursor.execute("SELECT permission FROM permissions WHERE user=%s", [user])
 
         permissions = []
-        for value in cursor:
-            permissions.append(value)
+        for value in cursor.fetchall():
+            permissions.append(value[0])
         return permissions
 
     def add_permission(self, user, permission):
@@ -68,6 +77,6 @@ class Database:
         cursor.execute("SELECT user FROM permissions WHERE permission=%s", [permission])
 
         users = []
-        for value in cursor:
+        for value in cursor.fetchall():
             users.append(int(value[0]))
         return users

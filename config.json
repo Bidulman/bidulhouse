@@ -6,9 +6,15 @@
   "mysql": {
     "host": "localhost",
     "port": 3306,
-    "user": "root",
-    "password": "root",
-    "database": "bidulhouse"
+    "database": "bidulhouse",
+    "client": {
+      "user": "user1",
+      "password": "wonderful-beetroot"
+    },
+    "server": {
+      "user": "user2",
+      "password": "annoying-rabbit"
+    }
   },
   "telegram": {
     "token": "XXXXXXXXXX:abcdefghijklmnopqrstuvw"

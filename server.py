@@ -3,7 +3,7 @@ from data import Database
 from bot import Bot
 from api import API
 
-config = Config("myconfig.json", "server")
+config = Config("config.json", "server")
 database = Database(
     config.mysql.host,
     config.mysql.port,

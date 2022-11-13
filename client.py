@@ -3,7 +3,7 @@ from data import Database
 
 from shell import Console
 
-config = Config("myconfig.json", "client")
+config = Config("config.json", "client")
 database = Database(
     config.mysql.host,
     config.mysql.port,

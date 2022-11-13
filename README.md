@@ -28,3 +28,5 @@ catch (error) {
     throw '[BidulHouse] Sending failed: ' + error + '.';
 }
 ```
+
+Don't forget to register the media into a user.

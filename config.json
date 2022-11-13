@@ -1,0 +1,38 @@
+{
+  "api": {
+    "host": "localhost",
+    "port": 8080
+  },
+  "mysql": {
+    "host": "localhost",
+    "port": 3306,
+    "user": "root",
+    "password": "root",
+    "database": "bidulhouse"
+  },
+  "telegram": {
+    "token": "XXXXXXXXXX:abcdefghijklmnopqrstuvw"
+  },
+  "alerts": {
+    "fire-alarm.start": {
+      "permission": "fire-alarm.listen",
+      "message": "\uD83D\uDEA8 *ALERTE INCENDIE DÉCLENCHÉE*"
+    },
+    "fire-alarm.stop": {
+      "permission": "fire-alarm.listen",
+      "message": "☀ *FIN ALERTE INCENDIE*"
+    },
+    "fire-alarm.error": {
+      "permission": "fire-alarm.manage",
+      "message": "*\uD83D\uDEA8 DÉFAUT ALERTE INCENDIE*"
+    }
+  },
+  "messages": {
+    "and": "et",
+    "command.start.out": "Bienvenue dans la conversation avec le robot de gestion BidulHouse.\n\nVous pouvez ici recevoir des alertes correspondant aux différents groupes auxquels vous êtes affilié.\n\nPour actualiser votre profil sur notre base de données, utilisez la commande /profile.",
+    "command.profile.out": "Votre profil a été mis à jour avec succès selon les valeurs suivantes :\n\n*Identifiant*: {id}\n*Nom :* {name}\n\nCes valeurs sont visibles pour l'administrateur de la plateforme BidulHouse.",
+    "api.alerts.error": "Une erreur est survenue lors du traitement d'une alerte :\n{error}",
+    "api.alerts.sent": "L'alerte '{alert}' a été envoyée aux personnes suivantes : {users}.",
+    "api.alerts.received": "L'alerte '{alert}' a été reçue mais n'est pas présente dans le fichier de configuration."
+  }
+}
